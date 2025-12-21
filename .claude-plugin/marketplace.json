@@ -16,6 +16,16 @@
         "plugin-development",
         "mcp"
       ]
+    },
+    {
+      "name": "version-notifier",
+      "source": "./plugins/version-notifier",
+      "description": "Notify and explain changelog on new version release",
+      "version": "1.0.0",
+      "categories": [
+        "utility",
+        "notification"
+      ]
     }
   ]
 }
