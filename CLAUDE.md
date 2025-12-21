@@ -1,91 +1,69 @@
 # Claude Code Harnesses Factory
 
-This project provides a comprehensive collection of Claude Code harness components including agents, skills, commands, rules, settings, hooks, and MCP configurations.
+A factory toolkit for creating Claude Code harness components.
 
-## Project Structure
+## Purpose
 
-```
-claude-code-harnesses-factory/
-├── .claude/
-│   ├── agents/           # Specialized AI agents
-│   ├── skills/           # Reusable capabilities
-│   ├── commands/         # Custom slash commands
-│   ├── rules/            # Context-specific rules
-│   └── settings.json     # Claude Code settings
-├── .mcp.json             # MCP server configurations
-├── CLAUDE.md             # This file
-└── README.md             # Project documentation
-```
+This plugin provides skills, agents, and hooks to help you build:
+- **Agents** - Autonomous AI specialists
+- **Skills** - Reusable capability packages
+- **Commands** - Custom slash commands
+- **Hooks** - Event-driven automation
+- **MCP Servers** - External service integrations
 
 ## Available Components
 
-### Agents
-- `code-reviewer` - Expert code review specialist
-- `test-engineer` - Test creation and coverage specialist
-- `debugger` - Systematic bug identification
-- `performance-profiler` - Performance analysis expert
-- `security-auditor` - Security vulnerability detection
-
 ### Skills
-- `git-workflow` - Git operations and commit messages
-- `code-review` - Code review best practices
-- `testing` - Test development guidance
-- `documentation` - Documentation generation
 
-### Commands
-- `/generate-tests` - Generate test suites
-- `/review-code` - Review code changes
-- `/commit` - Create git commits
-- `/security-check` - Run security audit
-- `/performance-check` - Analyze performance
+| Skill | Purpose |
+|-------|---------|
+| `skill-creator` | Guide for creating new skills |
+| `agent-development` | Guide for building agents |
+| `command-development` | Guide for creating commands |
+| `mcp-builder` | Guide for building MCP servers |
+| `mcp-integration` | Guide for integrating MCP servers |
 
-## Development Standards
+### Agents
 
-### Code Quality
-- Write clean, readable, and maintainable code
-- Use consistent naming conventions
-- Keep functions small and focused
-- Follow single responsibility principle
+| Agent | Purpose |
+|-------|---------|
+| `mcp-server-architect` | Expert for MCP server design and implementation |
 
-### Git Workflow
-- Use atomic commits with descriptive messages
-- Follow Conventional Commits format
-- Create feature branches for new work
-- Keep commits focused and reviewable
+### Hooks
 
-### Testing
-- Write tests for all new features
-- Maintain 80%+ code coverage on critical paths
-- Use descriptive test names
-- Follow AAA pattern (Arrange, Act, Assert)
+| Hook | Purpose |
+|------|---------|
+| `file-backup` | Auto-backup files before editing |
+| `change-tracker` | Log all file changes |
 
-### Security
-- Never commit secrets or credentials
-- Use environment variables for sensitive data
-- Validate all inputs
-- Keep dependencies updated
+## Usage
 
-## Commands Reference
+When creating new harness components, Claude will automatically use these skills to guide you through:
 
-```bash
-# Run tests
-npm test
+1. **Creating a skill**: Invoke `skill-creator` knowledge
+2. **Building an agent**: Use `agent-development` patterns
+3. **Making a command**: Follow `command-development` structure
+4. **Setting up MCP**: Apply `mcp-builder` and `mcp-integration`
 
-# Lint code
-npm run lint
+## File Structure Reference
 
-# Build project
-npm run build
+```
+# Skill
+skills/my-skill/SKILL.md
 
-# Type check
-npm run typecheck
+# Agent
+agents/my-agent.md
+
+# Command
+commands/my-command.md
+
+# Hook
+hooks/my-hook.json
+
+# MCP Configuration
+.mcp.json
 ```
 
-## Review Checklist
+## Attribution
 
-Before completing any task:
-- [ ] Code follows project conventions
-- [ ] Tests pass and coverage is adequate
-- [ ] No security vulnerabilities introduced
-- [ ] Documentation updated if needed
-- [ ] Git commit message is descriptive
+Skills sourced from [claude-code-templates](https://github.com/davila7/claude-code-templates) (MIT License).
