@@ -130,6 +130,100 @@ claude-code-harnesses-factory/
 # → mcp-builder and mcp-integration are applied
 ```
 
+## Development & Debugging
+
+### Testing Plugins
+
+```bash
+# Launch Claude Code with a specific plugin
+./scripts/test-plugin.sh version-notifier
+
+# Launch with all plugins
+./scripts/test-plugin.sh --all
+
+# Or using npm
+npm run test:plugin -- version-notifier
+```
+
+### Testing Hook Scripts
+
+```bash
+# Test a hook script and see its output
+./scripts/test-hook.sh version-notifier
+
+# Test a specific script
+./scripts/test-hook.sh version-notifier version-check.sh
+
+# Or using npm
+npm run test:hook -- version-notifier
+```
+
+Example output:
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Testing: version-check.sh
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▶ Executing...
+✓ Script executed successfully
+
+▼ Parsed JSON:
+{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "..."
+  }
+}
+```
+
+### Validating Plugins
+
+```bash
+# Validate all plugins
+./scripts/validate-plugin.sh
+
+# Validate a specific plugin
+./scripts/validate-plugin.sh version-notifier
+
+# Or using npm
+npm run validate
+```
+
+Checks:
+- `.claude-plugin/plugin.json` exists and is valid JSON
+- Required fields (name, version, description)
+- Hook script references exist and are executable
+- Commands and skills directories
+
+### Creating a New Plugin
+
+1. Create plugin directory:
+   ```bash
+   mkdir -p plugins/my-plugin/.claude-plugin
+   mkdir -p plugins/my-plugin/hooks
+   mkdir -p plugins/my-plugin/scripts
+   ```
+
+2. Create `plugin.json`:
+   ```json
+   {
+     "name": "my-plugin",
+     "version": "1.0.0",
+     "description": "My awesome plugin",
+     "hooks": "./hooks/hooks.json"
+   }
+   ```
+
+3. Validate:
+   ```bash
+   ./scripts/validate-plugin.sh my-plugin
+   ```
+
+4. Test:
+   ```bash
+   ./scripts/test-plugin.sh my-plugin
+   ```
+
 ## Attribution
 
 Skills are adapted from [claude-code-templates](https://github.com/davila7/claude-code-templates) by Daniel Avila (MIT License).

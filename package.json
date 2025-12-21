@@ -32,6 +32,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "validate": "node scripts/validate.js"
+    "validate": "./scripts/validate-plugin.sh",
+    "test:hook": "./scripts/test-hook.sh",
+    "test:plugin": "./scripts/test-plugin.sh"
   }
 }
