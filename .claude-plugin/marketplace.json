@@ -1,0 +1,22 @@
+{
+  "name": "harnesses-factory-marketplace",
+  "description": "Marketplace for Claude Code harness components",
+  "owner": {
+    "name": "s-hiraoku",
+    "url": "https://github.com/s-hiraoku"
+  },
+  "plugins": [
+    {
+      "name": "harnesses-factory",
+      "source": ".",
+      "description": "Complete harness toolkit with agents, skills, commands, and rules for development workflows",
+      "version": "1.0.0",
+      "categories": [
+        "development",
+        "code-quality",
+        "testing",
+        "security"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "harnesses-factory",
+  "description": "A comprehensive collection of Claude Code harness components including agents, skills, commands, and rules for enhanced AI-powered development workflows",
+  "version": "1.0.0",
+  "author": {
+    "name": "s-hiraoku",
+    "url": "https://github.com/s-hiraoku"
+  },
+  "repository": "https://github.com/s-hiraoku/claude-code-harnesses-factory",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agents",
+    "skills",
+    "commands",
+    "code-review",
+    "testing",
+    "debugging",
+    "security",
+    "performance"
+  ],
+  "components": {
+    "agents": [
+      "code-reviewer",
+      "test-engineer",
+      "debugger",
+      "performance-profiler",
+      "security-auditor"
+    ],
+    "skills": [
+      "git-workflow",
+      "code-review",
+      "testing",
+      "documentation"
+    ],
+    "commands": [
+      "generate-tests",
+      "review-code",
+      "commit",
+      "security-check",
+      "performance-check"
+    ],
+    "rules": [
+      "code-style",
+      "security",
+      "testing"
+    ]
+  }
+}

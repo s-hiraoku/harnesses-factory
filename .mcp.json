@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "memory-bank": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/memory-bank-mcp"],
+      "description": "Centralized memory system for AI agents"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/sequential-thinking-mcp"],
+      "description": "Helps decompose complex tasks into logical steps"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/filesystem-mcp", "--root", "."],
+      "description": "File system operations within project"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "description": "GitHub integration for issues, PRs, and repos",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_TOKEN}"
+      }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/postgres-mcp"],
+      "env": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      },
+      "description": "PostgreSQL database operations"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/brave-search-mcp"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "description": "Web search via Brave Search API"
+    }
+  }
+}
