@@ -1,30 +1,30 @@
 # Claude Code Harnesses Factory
 
-Claude Code プラグインのマーケットプレイス。
+A marketplace for Claude Code plugins.
 
 ## Plugins
 
 | Plugin | Description | Status |
 |--------|-------------|--------|
-| [`version-notifier`](./plugins/version-notifier/) | 新バージョンリリース時に Changelog を通知・解説 | Available |
-| `context-advisor` | コンテキストウィンドウの使用状況を分析・最適化 | Planned |
+| [`version-notifier`](./plugins/version-notifier/) | Notifies and explains changelog on new version releases | Available |
+| `context-advisor` | Analyzes and optimizes context window usage | Planned |
 
 ## Installation
 
-### マーケットプレイスとして追加
+### Add as Marketplace
 
 ```bash
-# マーケットプレイスを追加
+# Add marketplace
 /plugin marketplace add s-hiraoku/claude-code-harnesses-factory
 
-# 利用可能なプラグインを確認
+# Check available plugins
 /plugin search
 
-# プラグインをインストール
+# Install plugin
 /plugin install version-notifier
 ```
 
-### 個別プラグインのインストール
+### Install Individual Plugin
 
 ```bash
 /plugin install version-notifier@s-hiraoku/claude-code-harnesses-factory
@@ -37,17 +37,19 @@ claude-code-harnesses-factory/
 ├── .claude-plugin/
 │   └── marketplace.json      # Marketplace configuration
 ├── .claude/                   # Development tools (repo-local)
-│   ├── agents/
-│   ├── skills/
-│   └── hooks/
+│   ├── agents/                # Toolkit agents (committed)
+│   ├── skills/                # Toolkit skills (committed)
+│   ├── settings.json          # Generated from plugins/ (gitignored)
+│   └── commands/              # Generated from plugins/ (gitignored)
 ├── plugins/                   # Distributable plugins
 │   ├── version-notifier/
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json
 │   │   ├── hooks/
 │   │   │   └── hooks.json
+│   │   ├── commands/
+│   │   ├── skills/
 │   │   ├── scripts/
-│   │   │   └── version-check.sh
 │   │   └── README.md
 │   └── context-advisor/       # (planned)
 ├── scripts/                   # Development scripts
@@ -56,28 +58,51 @@ claude-code-harnesses-factory/
 
 ## Development
 
-### Setup (1回だけ)
+This repository is a **Plugin Factory**. The `plugins/` directory contains production-ready plugins that should NOT be modified for debugging purposes.
+
+### Setup
 
 ```bash
-# plugins/ を ~/.claude/plugins/ にシンボリックリンク
+# Generate .claude/ files from plugins/
 ./scripts/dev-setup.sh
 
-# 状態確認
+# Check current status
 ./scripts/dev-setup.sh --status
 
-# リンク削除
-./scripts/dev-setup.sh --remove
+# Clean up generated files
+./scripts/dev-setup.sh --clean
 ```
 
-これで `claude` を普通に起動するだけでプラグインが動作します。
+**How it works:**
+- Generates `.claude/settings.json` from `plugins/*/hooks/hooks.json`
+- Generates `.claude/commands/` from `plugins/*/commands/`
+- Replaces `${CLAUDE_PLUGIN_ROOT}` with `${PWD}/plugins/<name>`
+
+After running `dev-setup.sh`, start `claude` to debug plugins.
+
+### Workflow
+
+```bash
+# 1. Initial setup
+./scripts/dev-setup.sh
+
+# 2. Modify files in plugins/
+vim plugins/version-notifier/scripts/version-check.sh
+
+# 3. Regenerate .claude/ files
+./scripts/dev-setup.sh
+
+# 4. Test with claude
+claude
+```
 
 ### Testing
 
 ```bash
-# プラグインの検証
+# Validate plugin structure
 ./scripts/validate-plugin.sh version-notifier
 
-# Hook スクリプトの単体テスト
+# Test hook script
 ./scripts/test-hook.sh version-notifier
 ```
 
@@ -100,10 +125,10 @@ claude-code-harnesses-factory/
    }
    ```
 
-3. Validate and test:
+3. Run dev-setup and test:
    ```bash
-   ./scripts/validate-plugin.sh my-plugin
-   ./scripts/test-plugin.sh my-plugin
+   ./scripts/dev-setup.sh
+   claude
    ```
 
 ## Attribution
