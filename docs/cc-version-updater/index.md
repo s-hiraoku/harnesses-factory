@@ -1,6 +1,6 @@
-# CC Version Updator 開発ドキュメント
+# CC Version Updater 開発ドキュメント
 
-CC Version Updator プラグインの開発で得られた知見をまとめたドキュメント。
+CC Version Updater プラグインの開発で得られた知見をまとめたドキュメント。
 
 ## ドキュメント一覧
 
@@ -23,7 +23,7 @@ CC Version Updator プラグインの開発で得られた知見をまとめた�
 
 ### ファイル構成
 ```
-plugins/cc-version-updator/
+plugins/cc-version-updater/
 ├── .claude-plugin/plugin.json   # マニフェスト
 ├── hooks/hooks.json             # Hook 定義
 ├── commands/update-claude.md    # /update-claude コマンド

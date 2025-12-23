@@ -1,4 +1,4 @@
-# CC Version Updator アーキテクチャ
+# CC Version Updater アーキテクチャ
 
 ## 概要
 

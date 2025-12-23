@@ -1,5 +1,5 @@
 {
-  "name": "cc-version-updator",
+  "name": "cc-version-updater",
   "version": "0.0.1",
   "description": "Notifies about new Claude Code versions and assists with upgrades",
   "author": {

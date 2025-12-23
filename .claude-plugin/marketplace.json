@@ -9,8 +9,8 @@
   },
   "plugins": [
     {
-      "name": "cc-version-updator",
-      "source": "./plugins/cc-version-updator",
+      "name": "cc-version-updater",
+      "source": "./plugins/cc-version-updater",
       "description": "Notify and explain changelog on new version release",
       "version": "0.0.1"
     }

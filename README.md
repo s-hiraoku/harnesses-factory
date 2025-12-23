@@ -6,7 +6,7 @@ A marketplace for Claude Code plugins.
 
 | Plugin | Description | Status |
 |--------|-------------|--------|
-| [`cc-version-updator`](./plugins/cc-version-updator/) | Notifies and explains changelog on new version releases | Available |
+| [`cc-version-updater`](./plugins/cc-version-updater/) | Notifies and explains changelog on new version releases | Available |
 | `context-advisor` | Analyzes and optimizes context window usage | Planned |
 
 ## Installation
@@ -21,13 +21,13 @@ A marketplace for Claude Code plugins.
 /plugin search
 
 # Install plugin
-/plugin install cc-version-updator
+/plugin install cc-version-updater
 ```
 
 ### Install Individual Plugin
 
 ```bash
-/plugin install cc-version-updator@s-hiraoku/claude-code-harnesses-factory
+/plugin install cc-version-updater@s-hiraoku/claude-code-harnesses-factory
 ```
 
 ## Project Structure
@@ -42,7 +42,7 @@ claude-code-harnesses-factory/
 │   ├── settings.json          # Generated from plugins/ (gitignored)
 │   └── commands/              # Generated from plugins/ (gitignored)
 ├── plugins/                   # Distributable plugins
-│   ├── cc-version-updator/
+│   ├── cc-version-updater/
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json
 │   │   ├── hooks/
@@ -87,7 +87,7 @@ After running `dev-setup.sh`, start `claude` to debug plugins.
 ./scripts/dev-setup.sh
 
 # 2. Modify files in plugins/
-vim plugins/cc-version-updator/scripts/version-check.sh
+vim plugins/cc-version-updater/scripts/version-check.sh
 
 # 3. Regenerate .claude/ files
 ./scripts/dev-setup.sh
@@ -100,10 +100,10 @@ claude
 
 ```bash
 # Validate plugin structure
-./scripts/validate-plugin.sh cc-version-updator
+./scripts/validate-plugin.sh cc-version-updater
 
 # Test hook script
-./scripts/test-hook.sh cc-version-updator
+./scripts/test-hook.sh cc-version-updater
 ```
 
 ### Creating a New Plugin
