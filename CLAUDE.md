@@ -11,7 +11,7 @@ A marketplace for Claude Code plugins.
 
 | Plugin | Description |
 |--------|-------------|
-| `version-notifier` | New version notification |
+| `cc-version-updator` | New version notification |
 | `context-advisor` | Context optimization (planned) |
 
 ## Development Tools (.claude/)

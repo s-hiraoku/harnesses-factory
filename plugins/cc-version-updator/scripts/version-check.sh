@@ -51,7 +51,7 @@ show_post_upgrade_summary() {
 $summary"
 
   # Context for Claude (for follow-up questions)
-  local context_msg="[version-notifier] Claude Code has been upgraded from v${prev_version} to v${new_version}. The summary above has been displayed. If the user asks follow-up questions, refer to the changelog-interpreter skill for guidance."
+  local context_msg="[cc-version-updator] Claude Code has been upgraded from v${prev_version} to v${new_version}. The summary above has been displayed. If the user asks follow-up questions, refer to the changelog-interpreter skill for guidance."
 
   output_json "$system_msg" "$context_msg"
 

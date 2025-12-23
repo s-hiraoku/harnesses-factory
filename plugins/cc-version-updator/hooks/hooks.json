@@ -1,5 +1,5 @@
 {
-  "description": "Version notifier plugin hooks",
+  "description": "CC Version Updator plugin hooks",
   "hooks": {
     "SessionStart": [
       {

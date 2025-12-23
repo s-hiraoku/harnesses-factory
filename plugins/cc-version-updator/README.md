@@ -1,4 +1,4 @@
-# Version Notifier Plugin
+# CC Version Updator Plugin
 
 A plugin that automatically notifies you when a new version of Claude Code is released and makes upgrading easy.
 
@@ -14,10 +14,10 @@ A plugin that automatically notifies you when a new version of Claude Code is re
 
 ```bash
 # Global install
-claude plugins install version-notifier@s-hiraoku/claude-code-harnesses-factory
+claude plugins install cc-version-updator@s-hiraoku/claude-code-harnesses-factory
 
 # Project local
-claude plugins install version-notifier@s-hiraoku/claude-code-harnesses-factory --scope project
+claude plugins install cc-version-updator@s-hiraoku/claude-code-harnesses-factory --scope project
 ```
 
 ## Usage
@@ -135,7 +135,7 @@ Now supports Kitty, Alacritty, and other terminals.
 ## File Structure
 
 ```
-plugins/version-notifier/
+plugins/cc-version-updator/
 ├── .claude-plugin/
 │   └── plugin.json              # Plugin manifest
 ├── hooks/
@@ -192,13 +192,13 @@ Provides guidelines for Claude to interpret changelogs and generate user-friendl
 # Edit get_current_version() in version-check.sh
 
 # Clear cache
-rm -rf plugins/version-notifier/.cache/*
+rm -rf plugins/cc-version-updator/.cache/*
 
 # Start with plugin directory
-claude --plugin-dir ./plugins/version-notifier
+claude --plugin-dir ./plugins/cc-version-updator
 ```
 
-See [docs/version-notifier/](../../docs/version-notifier/) for detailed development documentation.
+See [docs/cc-version-updator/](../../docs/cc-version-updator/) for detailed development documentation.
 
 ## License
 

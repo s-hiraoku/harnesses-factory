@@ -4,7 +4,7 @@
 # Usage: ./scripts/test-plugin.sh <plugin-name>
 #
 # Examples:
-#   ./scripts/test-plugin.sh version-notifier
+#   ./scripts/test-plugin.sh cc-version-updator
 #   ./scripts/test-plugin.sh context-advisor
 
 set -e

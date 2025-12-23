@@ -1,6 +1,6 @@
-# Version Notifier 開発ドキュメント
+# CC Version Updator 開発ドキュメント
 
-Version Notifier プラグインの開発で得られた知見をまとめたドキュメント。
+CC Version Updator プラグインの開発で得られた知見をまとめたドキュメント。
 
 ## ドキュメント一覧
 
@@ -23,7 +23,7 @@ Version Notifier プラグインの開発で得られた知見をまとめたド
 
 ### ファイル構成
 ```
-plugins/version-notifier/
+plugins/cc-version-updator/
 ├── .claude-plugin/plugin.json   # マニフェスト
 ├── hooks/hooks.json             # Hook 定義
 ├── commands/update-claude.md    # /update-claude コマンド

@@ -4,8 +4,8 @@
 # Usage: ./scripts/test-hook.sh <plugin-name> [hook-script]
 #
 # Examples:
-#   ./scripts/test-hook.sh version-notifier
-#   ./scripts/test-hook.sh version-notifier version-check.sh
+#   ./scripts/test-hook.sh cc-version-updator
+#   ./scripts/test-hook.sh cc-version-updator version-check.sh
 
 set -e
 

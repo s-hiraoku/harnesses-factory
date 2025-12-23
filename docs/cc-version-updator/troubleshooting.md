@@ -82,9 +82,9 @@ Command 内で `${CLAUDE_PLUGIN_ROOT}` を使用しているが、空になる�
 
 ```bash
 # テスト用（.claude/commands/update-claude.md）
-cat "/absolute/path/to/plugins/version-notifier/.cache/pending-upgrade.json"
+cat "/absolute/path/to/plugins/cc-version-updator/.cache/pending-upgrade.json"
 
-# 本番用（plugins/version-notifier/commands/update-claude.md）
+# 本番用（plugins/cc-version-updator/commands/update-claude.md）
 cat "${CLAUDE_PLUGIN_ROOT}/.cache/pending-upgrade.json"
 ```
 
@@ -157,7 +157,7 @@ curl -s --max-time 5 "https://api.github.com/..."
 
 ### キャッシュをクリア
 ```bash
-rm -rf plugins/version-notifier/.cache/*
+rm -rf plugins/cc-version-updator/.cache/*
 ```
 
 ### バージョンを偽装（テスト用）

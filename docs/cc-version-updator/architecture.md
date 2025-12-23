@@ -1,4 +1,4 @@
-# Version Notifier アーキテクチャ
+# CC Version Updator アーキテクチャ
 
 ## 概要
 

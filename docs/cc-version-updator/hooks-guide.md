@@ -110,7 +110,7 @@ ${G}━━━━━━━━━━━━━━━━━━━━━━━━━�
 cat "${CLAUDE_PLUGIN_ROOT}/.cache/pending-upgrade.json"
 
 # テスト用
-cat "/absolute/path/to/plugins/version-notifier/.cache/pending-upgrade.json"
+cat "/absolute/path/to/plugins/cc-version-updator/.cache/pending-upgrade.json"
 ```
 
 ## Hook 設定ファイル

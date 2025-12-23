@@ -1,6 +1,6 @@
 {
-  "name": "version-notifier",
-  "version": "1.1.0",
+  "name": "cc-version-updator",
+  "version": "0.0.1",
   "description": "Notifies about new Claude Code versions and assists with upgrades",
   "author": {
     "name": "s-hiraoku",

@@ -7,10 +7,10 @@
   },
   "plugins": [
     {
-      "name": "version-notifier",
-      "source": "./plugins/version-notifier",
+      "name": "cc-version-updator",
+      "source": "./plugins/cc-version-updator",
       "description": "Notify and explain changelog on new version release",
-      "version": "1.0.0",
+      "version": "0.0.1",
       "categories": [
         "utility",
         "notification"
