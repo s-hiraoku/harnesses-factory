@@ -7,7 +7,5 @@
     "url": "https://github.com/s-hiraoku"
   },
   "repository": "https://github.com/s-hiraoku/claude-code-harnesses-factory",
-  "license": "MIT",
-  "keywords": ["version", "notification", "changelog", "update", "upgrade"],
-  "hooks": "./hooks/hooks.json"
+  "license": "MIT"
 }

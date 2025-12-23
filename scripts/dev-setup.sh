@@ -65,6 +65,7 @@ msg() {
         "skills_count")    printf "スキル: %s 個" "${args[0]}" ;;
         "not_generated")   echo "未生成" ;;
         "generating_settings") echo ".claude/settings.json を生成中..." ;;
+        "merging_existing")    echo "既存の settings.json とマージ中..." ;;
         "generating_commands") echo ".claude/commands/ を生成中..." ;;
         "processing")      printf "処理中: %s" "${args[0]}" ;;
         "created")         printf "作成: %s" "${args[0]}" ;;
@@ -99,6 +100,7 @@ msg() {
         "skills_count")    printf "skills: %s skill(s)" "${args[0]}" ;;
         "not_generated")   echo "not generated" ;;
         "generating_settings") echo "Generating .claude/settings.json..." ;;
+        "merging_existing")    echo "Merging with existing settings.json..." ;;
         "generating_commands") echo "Generating .claude/commands/..." ;;
         "processing")      printf "Processing: %s" "${args[0]}" ;;
         "created")         printf "Created: %s" "${args[0]}" ;;
@@ -188,6 +190,13 @@ show_status() {
 generate_settings() {
   echo -e "${BLUE}$(msg generating_settings)${NC}"
 
+  # Load existing settings.json if it exists (preserve enabledPlugins, etc.)
+  local existing_settings='{}'
+  if [ -f "$CLAUDE_DIR/settings.json" ]; then
+    existing_settings=$(cat "$CLAUDE_DIR/settings.json")
+    echo -e "  $(msg merging_existing)"
+  fi
+
   # Collect hooks from each plugin
   local all_hooks='{"hooks":{}}'
 
@@ -211,9 +220,10 @@ generate_settings() {
     fi
   done
 
-  # Output to settings.json
+  # Merge: existing settings (base) + new hooks (override hooks only)
+  # This preserves enabledPlugins, allowedTools, etc. while updating hooks
   mkdir -p "$CLAUDE_DIR"
-  echo "$all_hooks" | jq '.' > "$CLAUDE_DIR/settings.json"
+  echo "$existing_settings" | jq --argjson hooks "$all_hooks" '. * $hooks' > "$CLAUDE_DIR/settings.json"
   echo -e "  ${GREEN}✓${NC} $(msg created ".claude/settings.json")"
 }
 

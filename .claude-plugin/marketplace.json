@@ -1,20 +1,18 @@
 {
   "name": "harnesses-factory-marketplace",
-  "description": "Marketplace for Claude Code harness development tools",
   "owner": {
-    "name": "s-hiraoku",
-    "url": "https://github.com/s-hiraoku"
+    "name": "s-hiraoku"
+  },
+  "metadata": {
+    "description": "Marketplace for Claude Code harness development tools",
+    "version": "0.0.1"
   },
   "plugins": [
     {
       "name": "cc-version-updator",
       "source": "./plugins/cc-version-updator",
       "description": "Notify and explain changelog on new version release",
-      "version": "0.0.1",
-      "categories": [
-        "utility",
-        "notification"
-      ]
+      "version": "0.0.1"
     }
   ]
 }
