@@ -143,14 +143,19 @@ plugins/cc-version-updater/
 ├── commands/
 │   └── update-claude.md         # /update-claude command
 ├── skills/
-│   └── changelog-interpreter/
-│       └── SKILL.md             # Changelog interpretation guidelines
+│   ├── changelog-interpreter/
+│   │   └── SKILL.md             # Changelog interpretation guidelines
+│   ├── changelog-infographic/
+│   │   └── SKILL.md             # Infographic generation guidelines
+│   └── canvas-design/
+│       └── SKILL.md             # General visual art generation
 ├── scripts/
 │   ├── version-check.sh         # Version check & notification
 │   └── detect-install-method.sh # Installation method detection
 ├── .cache/                      # Runtime cache
 │   ├── pending-upgrade.json     # Pending upgrade info
-│   └── changelog-summary.json   # AI-generated summary
+│   ├── changelog-summary.json   # AI-generated summary
+│   └── infographics/            # Generated infographic images
 └── README.md
 ```
 
@@ -160,6 +165,7 @@ plugins/cc-version-updater/
 |------|---------|
 | `pending-upgrade.json` | Detected new version info (for /update-claude) |
 | `changelog-summary.json` | AI-generated usage summary to display after upgrade |
+| `infographics/*.png` | Generated changelog infographic images |
 
 ## Skills
 
@@ -170,6 +176,29 @@ Provides guidelines for Claude to interpret changelogs and generate user-friendl
 - Usage examples
 - Use cases
 - Improvements and bug fixes
+
+### canvas-design
+
+General-purpose visual art generation skill:
+- Creates beautiful .png and .pdf documents using design philosophy
+- Suitable for posters, art pieces, and static visuals
+- Philosophy-driven approach for museum-quality output
+
+### changelog-infographic
+
+Generates beautiful infographic PNG images from changelog summaries:
+- Transforms text summaries into visual artifacts
+- "Technical Clarity" design philosophy for professional output
+- Saves to cache directory with clickable links
+- Museum-quality visual design
+
+**Workflow:**
+```
+changelog (raw) → changelog-interpreter → summary → changelog-infographic → PNG
+```
+
+**Usage:**
+After `changelog-interpreter` generates a summary, invoke this skill to create a shareable infographic.
 
 ## Supported Installation Methods
 
