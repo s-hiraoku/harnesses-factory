@@ -128,7 +128,8 @@ Now supports Kitty, Alacritty, and other terminals.
 │  3. Execute upgrade                                 │
 │  4. Generate summary (changelog-interpreter skill)  │
 │  5. Save to changelog-summary.json                  │
-│  6. Display restart message                         │
+│  6. Generate infographic (changelog-infographic)    │
+│  7. Display restart message + infographic link      │
 └─────────────────────────────────────────────────────┘
 ```
 

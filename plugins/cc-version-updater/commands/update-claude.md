@@ -118,7 +118,59 @@ jq -n \
 rm -f "${CLAUDE_PLUGIN_ROOT}/.cache/pending-upgrade.json"
 ```
 
-### 7. Prompt Restart
+### 7. Generate Infographic (Optional)
+
+**CRITICAL**: Follow the `changelog-infographic` skill to create a visual summary.
+
+#### Step 7.1: Read the Skill
+
+```bash
+cat "${CLAUDE_PLUGIN_ROOT}/skills/changelog-infographic/SKILL.md"
+```
+
+#### Step 7.2: Prepare Input Data
+
+Structure the changelog data for infographic generation:
+
+```json
+{
+  "previousVersion": "{previousVersion}",
+  "latestVersion": "{latestVersion}",
+  "features": [
+    {
+      "name": "Feature Name",
+      "description": "Brief description",
+      "usage": "How to use",
+      "useCases": ["Case 1", "Case 2"]
+    }
+  ],
+  "improvements": ["Improvement 1", "Improvement 2"]
+}
+```
+
+#### Step 7.3: Generate PNG
+
+Follow the skill's design philosophy ("Technical Clarity") to create a PNG infographic:
+
+1. Create the visual using available image generation capabilities
+2. Save to: `${CLAUDE_PLUGIN_ROOT}/.cache/infographics/changelog-{prevVersion}-to-{newVersion}.png`
+
+```bash
+mkdir -p "${CLAUDE_PLUGIN_ROOT}/.cache/infographics"
+```
+
+#### Step 7.4: Store Infographic Path
+
+Save the infographic path to the summary JSON:
+
+```bash
+jq --arg path "${CLAUDE_PLUGIN_ROOT}/.cache/infographics/changelog-{prevVersion}-to-{newVersion}.png" \
+   '.infographicPath = $path' \
+   "${CLAUDE_PLUGIN_ROOT}/.cache/changelog-summary.json" > tmp.json && \
+   mv tmp.json "${CLAUDE_PLUGIN_ROOT}/.cache/changelog-summary.json"
+```
+
+### 8. Prompt Restart
 
 ```
 Upgrade complete!
@@ -130,6 +182,13 @@ Please restart Claude Code:
 The new features guide will be displayed on next startup.
 ```
 
-### 8. On Cancel
+If infographic was generated, also display:
+
+```
+📸 Infographic: {infographicPath}
+   Click to open, or run: open "{infographicPath}"
+```
+
+### 9. On Cancel
 
 Abort the process.
