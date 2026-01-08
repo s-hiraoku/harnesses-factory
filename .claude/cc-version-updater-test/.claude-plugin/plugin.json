@@ -1,0 +1,11 @@
+{
+  "name": "cc-version-updater-test",
+  "version": "0.0.1-test",
+  "description": "[TEST] Version updater with fake version (v2.0.72) - DRY-RUN mode",
+  "author": {
+    "name": "s-hiraoku",
+    "url": "https://github.com/s-hiraoku"
+  },
+  "repository": "https://github.com/s-hiraoku/claude-code-harnesses-factory",
+  "license": "MIT"
+}
