@@ -1,0 +1,11 @@
+{
+  "name": "ask-user-question",
+  "version": "1.0.0",
+  "description": "Structured question-asking skill for gathering user input and clarifying requirements",
+  "author": {
+    "name": "s-hiraoku",
+    "url": "https://github.com/s-hiraoku"
+  },
+  "repository": "https://github.com/s-hiraoku/claude-code-harnesses-factory",
+  "license": "MIT"
+}

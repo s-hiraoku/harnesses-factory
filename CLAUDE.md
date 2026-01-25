@@ -13,6 +13,7 @@ A marketplace for Claude Code plugins.
 |--------|-------------|
 | `cc-version-updater` | New version notification |
 | `spec-interviewer` | Interactive spec builder |
+| `ask-user-question` | Structured user input gathering |
 | `context-advisor` | Context optimization (planned) |
 
 ## Development Tools (.claude/)

@@ -7,6 +7,8 @@ A marketplace for Claude Code plugins.
 | Plugin | Description | Status |
 |--------|-------------|--------|
 | [`cc-version-updater`](./plugins/cc-version-updater/) | Notifies and explains changelog on new version releases | Available |
+| [`spec-interviewer`](./plugins/spec-interviewer/) | Interactive specification builder through interviews | Available |
+| [`ask-user-question`](./plugins/ask-user-question/) | Structured question-asking skill for user input | Available |
 | `context-advisor` | Analyzes and optimizes context window usage | Planned |
 
 ## Installation
