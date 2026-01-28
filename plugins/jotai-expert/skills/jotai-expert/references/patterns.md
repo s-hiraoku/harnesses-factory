@@ -22,15 +22,15 @@ import { atomWithDefault } from 'jotai/utils'
 const systemThemeAtom = atom('light')
 const userThemeAtom = atomWithDefault((get) => get(systemThemeAtom))
 
-// userThemeAtomに値をセット後、nullをセットするとフォールバック
+// After setting a value to userThemeAtom, setting null falls back to default
 ```
 
 ### Utility Combination
 
-atomWith*ユーティリティを組み合わせられない場合、派生atomで手動実装。
+When atomWith* utilities cannot be combined, implement manually with derived atoms.
 
 ```typescript
-// atomWithStorageとreducerパターンの組み合わせ
+// Combining atomWithStorage and reducer pattern
 const storageAtom = atomWithStorage('todos', [])
 
 const todosAtom = atom(

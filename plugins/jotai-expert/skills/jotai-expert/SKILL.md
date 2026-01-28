@@ -1,26 +1,26 @@
 ---
 name: jotai-expert
 description: |
-  Jotai状態管理ライブラリのエキスパートスキル。Reactアプリケーションでのatomベースの状態管理を実装する際に使用。以下の場合にこのスキルを使用:
-  (1) Jotaiのatom設計・実装
-  (2) 派生atom、非同期atom、atomFamilyの実装
-  (3) Jotaiのベストプラクティスに基づくリファクタリング
-  (4) パフォーマンス最適化（selectAtom、splitAtom等）
-  (5) 永続化（localStorage/sessionStorage連携）
-  (6) TypeScript型定義
-  (7) テスト実装
-  ユーザーが「Jotai」「atom」「状態管理」に関する質問や実装依頼をした場合に発動。
+  Expert skill for the Jotai state management library. Use when implementing atom-based state management in React applications. Use this skill for:
+  (1) Jotai atom design and implementation
+  (2) Derived atoms, async atoms, atomFamily implementation
+  (3) Refactoring based on Jotai best practices
+  (4) Performance optimization (selectAtom, splitAtom, etc.)
+  (5) Persistence (localStorage/sessionStorage integration)
+  (6) TypeScript type definitions
+  (7) Test implementation
+  Triggered when users ask questions or request implementations related to "Jotai", "atom", or "state management".
 ---
 
 # Jotai Expert
 
-Jotaiを使用したReact状態管理の実装ガイド。
+Implementation guide for React state management using Jotai.
 
 ## Core Concepts
 
 ### Atom
 
-状態の最小単位。値を持たず、Storeに保存される。
+The smallest unit of state. Does not hold value itself; stored in the Store.
 
 ```typescript
 // Primitive atom
@@ -81,7 +81,7 @@ export const clearUserAtom = atom(null, (get, set) => {
 ```typescript
 const userIdAtom = atom<number | null>(null)
 
-// Suspenseと連携する非同期atom
+// Async atom that integrates with Suspense
 const userDataAtom = atom(async (get) => {
   const userId = get(userIdAtom)
   if (!userId) return null
@@ -95,7 +95,7 @@ function UserProfile() {
   return <div>{userData?.name}</div>
 }
 
-// Suspenseでラップ
+// Wrap with Suspense
 <Suspense fallback={<Loading />}>
   <UserProfile />
 </Suspense>
@@ -103,22 +103,22 @@ function UserProfile() {
 
 ### Pattern 3: atomFamily
 
-動的にatomを生成・キャッシュ。メモリリーク対策必須。
+Dynamically generate and cache atoms. Memory leak prevention is essential.
 
 ```typescript
 const todoFamily = atomFamily((id: string) =>
   atom({ id, text: '', completed: false })
 )
 
-// 使用
+// Usage
 const todoAtom = todoFamily('todo-1')
 
-// クリーンアップ
+// Cleanup
 todoFamily.remove('todo-1')
 
-// 自動削除ルール設定
+// Set auto-removal rules
 todoFamily.setShouldRemove((createdAt, param) => {
-  return Date.now() - createdAt > 60 * 60 * 1000 // 1時間後削除
+  return Date.now() - createdAt > 60 * 60 * 1000 // Remove after 1 hour
 })
 ```
 
@@ -127,10 +127,10 @@ todoFamily.setShouldRemove((createdAt, param) => {
 ```typescript
 import { atomWithStorage } from 'jotai/utils'
 
-// localStorage永続化
+// localStorage persistence
 const themeAtom = atomWithStorage('theme', 'light')
 
-// sessionStorage永続化
+// sessionStorage persistence
 import { createJSONStorage } from 'jotai/utils'
 const sessionAtom = atomWithStorage(
   'session',
@@ -146,11 +146,11 @@ import { atomWithReset, useResetAtom, RESET } from 'jotai/utils'
 
 const formAtom = atomWithReset({ name: '', email: '' })
 
-// コンポーネント内
+// Inside component
 const resetForm = useResetAtom(formAtom)
-resetForm() // 初期値に戻る
+resetForm() // Resets to initial value
 
-// 派生atomでRESETシンボル使用
+// Using RESET symbol in derived atom
 const derivedAtom = atom(
   (get) => get(formAtom),
   (get, set, newValue) => {
@@ -163,17 +163,17 @@ const derivedAtom = atom(
 
 ### selectAtom
 
-大きなオブジェクトから一部のみ取得。派生atomを優先し、必要な場合のみ使用。
+Extract only a portion from a large object. Prefer derived atoms; use only when necessary.
 
 ```typescript
 import { selectAtom } from 'jotai/utils'
 
 const personAtom = atom({ name: 'John', age: 30, address: {...} })
 
-// nameのみを購読
+// Subscribe only to name
 const nameAtom = selectAtom(personAtom, (person) => person.name)
 
-// 安定した参照が必要（useMemoまたは外部定義）
+// Stable reference required (useMemo or external definition)
 const stableNameAtom = useMemo(
   () => selectAtom(personAtom, (p) => p.name),
   []
@@ -182,7 +182,7 @@ const stableNameAtom = useMemo(
 
 ### splitAtom
 
-配列の各要素を独立したatomとして管理。
+Manage each array element as an independent atom.
 
 ```typescript
 import { splitAtom } from 'jotai/utils'
@@ -210,19 +210,19 @@ function TodoList() {
 ## TypeScript
 
 ```typescript
-// 型推論を活用（明示的型定義は不要な場合が多い）
+// Leverage type inference (explicit type definitions often unnecessary)
 const countAtom = atom(0) // PrimitiveAtom<number>
 
-// 明示的型定義が必要な場合
+// When explicit type definition is needed
 const userAtom = atom<User | null>(null)
 
-// Write-only atomの型
+// Write-only atom type
 const actionAtom = atom<null, [string, number], void>(
   null,
   (get, set, str, num) => { ... }
 )
 
-// 型抽出
+// Type extraction
 type CountValue = ExtractAtomValue<typeof countAtom> // number
 ```
 
@@ -234,7 +234,7 @@ import userEvent from '@testing-library/user-event'
 import { Provider } from 'jotai'
 import { useHydrateAtoms } from 'jotai/utils'
 
-// 初期値を注入するヘルパー
+// Helper to inject initial values
 function HydrateAtoms({ initialValues, children }) {
   useHydrateAtoms(initialValues)
   return children
@@ -250,7 +250,7 @@ function TestProvider({ initialValues, children }) {
   )
 }
 
-// テスト
+// Test
 test('increments counter', async () => {
   render(
     <TestProvider initialValues={[[countAtom, 5]]}>
@@ -266,33 +266,33 @@ test('increments counter', async () => {
 ## Debugging
 
 ```typescript
-// デバッグラベル追加
+// Add debug label
 countAtom.debugLabel = 'count'
 
-// useAtomsDebugValueでProvider内の全atom確認
+// Check all atoms in Provider with useAtomsDebugValue
 import { useAtomsDebugValue } from 'jotai-devtools'
 function DebugObserver() {
   useAtomsDebugValue()
   return null
 }
 
-// Redux DevTools連携
+// Redux DevTools integration
 import { useAtomDevtools } from 'jotai-devtools'
 useAtomDevtools(countAtom, { name: 'count' })
 ```
 
 ## Best Practices
 
-1. **Atom粒度**: 小さく再利用可能な単位に分割
-2. **カプセル化**: base atomを隠蔽し、派生atomのみをexport
-3. **Action atom**: 複雑な更新ロジックはwrite-only atomに分離
-4. **非同期処理**: SuspenseとError Boundaryを適切に配置
-5. **atomFamily**: メモリリーク対策として`remove()`または`setShouldRemove()`を使用
-6. **TypeScript**: 型推論を活用し、必要な場合のみ明示的に型定義
-7. **テスト**: ユーザー操作に近い形でテストを記述
+1. **Atom granularity**: Split into small, reusable units
+2. **Encapsulation**: Hide base atoms and export only derived atoms
+3. **Action atoms**: Separate complex update logic into write-only atoms
+4. **Async handling**: Properly place Suspense and Error Boundaries
+5. **atomFamily**: Use `remove()` or `setShouldRemove()` to prevent memory leaks
+6. **TypeScript**: Leverage type inference; define types explicitly only when necessary
+7. **Testing**: Write tests that closely resemble user interactions
 
 ## References
 
-詳細は以下を参照:
-- [patterns.md](references/patterns.md): 高度な実装パターン
-- [api.md](references/api.md): API詳細リファレンス
+For more details, see:
+- [patterns.md](references/patterns.md): Advanced implementation patterns
+- [api.md](references/api.md): API detailed reference

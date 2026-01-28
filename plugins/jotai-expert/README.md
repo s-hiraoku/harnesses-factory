@@ -1,14 +1,14 @@
 # Jotai Expert Plugin
 
-Jotai状態管理ライブラリのエキスパートスキルを提供するプラグイン。
+Expert skill plugin for the Jotai state management library.
 
 ## Installation
 
 ```bash
-# Claude Code plugin として追加
+# Add as Claude Code plugin
 /plugin install https://github.com/s-hiraoku/harnesses-factory/plugins/jotai-expert
 
-# または skills CLI で追加
+# Or add with skills CLI
 npx skills add s-hiraoku/harnesses-factory/plugins/jotai-expert
 ```
 
@@ -16,19 +16,19 @@ npx skills add s-hiraoku/harnesses-factory/plugins/jotai-expert
 
 ### jotai-expert
 
-Reactアプリケーションでのatom ベースの状態管理を実装する際に使用します。
+Use this skill when implementing atom-based state management in React applications.
 
-**発動条件:**
-- 「Jotai」「atom」「状態管理」に関する質問や実装依頼をした場合
+**Trigger conditions:**
+- Questions or implementation requests about "Jotai", "atom", or "state management"
 
-**対応機能:**
-- Jotai の atom 設計・実装
-- 派生 atom、非同期 atom、atomFamily の実装
-- ベストプラクティスに基づくリファクタリング
-- パフォーマンス最適化（selectAtom、splitAtom 等）
-- 永続化（localStorage/sessionStorage 連携）
-- TypeScript 型定義
-- テスト実装
+**Supported features:**
+- Jotai atom design and implementation
+- Derived atoms, async atoms, atomFamily implementation
+- Refactoring based on best practices
+- Performance optimization (selectAtom, splitAtom, etc.)
+- Persistence (localStorage/sessionStorage integration)
+- TypeScript type definitions
+- Test implementation
 
 ## License
 

@@ -13,7 +13,7 @@
 
 ### atom
 
-状態の最小単位を定義。
+Defines the smallest unit of state.
 
 ```typescript
 // Signature
@@ -33,14 +33,14 @@ function atom<Value, Args extends unknown[], Result>(
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| initialValue | `Value` | Primitive atomの初期値 |
-| read | `(get: Getter) => Value` | 値を計算する関数 |
-| write | `(get: Getter, set: Setter, ...args: Args) => Result` | 値を更新する関数 |
+| initialValue | `Value` | Initial value for primitive atom |
+| read | `(get: Getter) => Value` | Function to compute the value |
+| write | `(get: Getter, set: Setter, ...args: Args) => Result` | Function to update the value |
 
 **Properties:**
 
-- `debugLabel`: デバッグ用のラベル文字列
-- `onMount`: atomが初めて購読されたときに呼ばれる関数
+- `debugLabel`: Label string for debugging
+- `onMount`: Function called when the atom is first subscribed
 
 ```typescript
 const countAtom = atom(0)
@@ -55,7 +55,7 @@ countAtom.onMount = (setAtom) => {
 
 ### useAtom
 
-atomの値を読み書きするhook。
+Hook to read and write atom values.
 
 ```typescript
 function useAtom<Value, Args extends unknown[], Result>(
@@ -71,7 +71,7 @@ const [count, setCount] = useAtom(countAtom)
 
 ### useAtomValue
 
-atomの値を読み取り専用で取得。
+Get atom value as read-only.
 
 ```typescript
 function useAtomValue<Value>(atom: Atom<Value>): Awaited<Value>
@@ -85,7 +85,7 @@ const count = useAtomValue(countAtom)
 
 ### useSetAtom
 
-atomの値を更新する関数のみ取得。コンポーネントは値の変更で再レンダリングされない。
+Get only the function to update atom value. Component does not re-render on value changes.
 
 ```typescript
 function useSetAtom<Value, Args extends unknown[], Result>(
@@ -104,7 +104,7 @@ setCount(5)
 
 ### atomWithStorage
 
-localStorage/sessionStorage永続化。
+localStorage/sessionStorage persistence.
 
 ```typescript
 import { atomWithStorage, createJSONStorage } from 'jotai/utils'
@@ -127,18 +127,18 @@ const asyncAtom = atomWithStorage('key', value, asyncStorage)
 
 ### atomWithReset / useResetAtom / RESET
 
-リセット可能なatom。
+Resettable atom.
 
 ```typescript
 import { atomWithReset, useResetAtom, RESET } from 'jotai/utils'
 
 const formAtom = atomWithReset({ name: '', email: '' })
 
-// コンポーネント内
+// Inside component
 const reset = useResetAtom(formAtom)
-reset() // 初期値に戻る
+reset() // Resets to initial value
 
-// 派生atomでRESET使用
+// Using RESET in derived atom
 const derivedAtom = atom(
   (get) => get(formAtom),
   (get, set, value) => {
@@ -151,7 +151,7 @@ const derivedAtom = atom(
 
 ### atomFamily
 
-パラメータに基づいて動的にatomを生成・キャッシュ。
+Dynamically generate and cache atoms based on parameters.
 
 ```typescript
 import { atomFamily } from 'jotai/utils'
@@ -161,21 +161,21 @@ const todoFamily = atomFamily((id: string) =>
 )
 
 // Methods
-todoFamily('id')           // atomを取得
-todoFamily.getParams()     // 全パラメータを取得
-todoFamily.remove('id')    // キャッシュから削除
+todoFamily('id')           // Get atom
+todoFamily.getParams()     // Get all parameters
+todoFamily.remove('id')    // Remove from cache
 todoFamily.setShouldRemove((createdAt, param) => {
   return Date.now() - createdAt > 3600000
 })
 ```
 
-**メモリリーク対策必須**: `remove()`または`setShouldRemove()`で適切にクリーンアップ。
+**Memory leak prevention required**: Properly cleanup with `remove()` or `setShouldRemove()`.
 
 ---
 
 ### selectAtom
 
-大きなオブジェクトから一部を抽出。派生atomを優先。
+Extract a portion from a large object. Prefer derived atoms.
 
 ```typescript
 import { selectAtom } from 'jotai/utils'
@@ -183,7 +183,7 @@ import { selectAtom } from 'jotai/utils'
 const personAtom = atom({ name: 'John', age: 30 })
 const nameAtom = selectAtom(personAtom, (person) => person.name)
 
-// equalityFn指定
+// Specify equalityFn
 const addressAtom = selectAtom(
   personAtom,
   (person) => person.address,
@@ -191,13 +191,13 @@ const addressAtom = selectAtom(
 )
 ```
 
-**注意**: 安定した参照が必要。useMemoまたはモジュールレベルで定義。
+**Note**: Stable reference required. Define with useMemo or at module level.
 
 ---
 
 ### splitAtom
 
-配列の各要素を独立したatomとして管理。
+Manage each array element as an independent atom.
 
 ```typescript
 import { splitAtom } from 'jotai/utils'
@@ -205,7 +205,7 @@ import { splitAtom } from 'jotai/utils'
 const todosAtom = atom<Todo[]>([])
 const todoAtomsAtom = splitAtom(todosAtom)
 
-// keyExtractor指定
+// Specify keyExtractor
 const todoAtomsAtom = splitAtom(todosAtom, (todo) => todo.id)
 
 // Dispatch actions
@@ -219,7 +219,7 @@ dispatch({ type: 'move', atom: todoAtom, before: anotherTodoAtom })
 
 ### atomWithDefault
 
-デフォルト値を持つatom。nullをセットするとフォールバック。
+Atom with default value. Falls back when set to null.
 
 ```typescript
 import { atomWithDefault } from 'jotai/utils'
@@ -227,16 +227,16 @@ import { atomWithDefault } from 'jotai/utils'
 const systemThemeAtom = atom('light')
 const userThemeAtom = atomWithDefault((get) => get(systemThemeAtom))
 
-// 使用
-set(userThemeAtom, 'dark')  // ユーザー設定
-set(userThemeAtom, null)    // システム設定にフォールバック
+// Usage
+set(userThemeAtom, 'dark')  // User setting
+set(userThemeAtom, null)    // Fallback to system setting
 ```
 
 ---
 
 ### focusAtom
 
-Opticsを使った深いネストへのアクセス。
+Access deeply nested values using Optics.
 
 ```typescript
 import { focusAtom } from 'jotai-optics'
@@ -249,7 +249,7 @@ const nameAtom = focusAtom(userAtom, (optic) => optic.prop('profile').prop('name
 
 ### loadable
 
-Suspenseなしで非同期atomを扱う。
+Handle async atoms without Suspense.
 
 ```typescript
 import { loadable } from 'jotai/utils'
@@ -265,7 +265,7 @@ const value = useAtomValue(loadableAtom)
 
 ### unwrap
 
-非同期atomを同期的にアクセス。初期値を指定。
+Access async atom synchronously. Specify initial value.
 
 ```typescript
 import { unwrap } from 'jotai/utils'
@@ -280,7 +280,7 @@ const unwrappedAtom = unwrap(asyncAtom, () => 'loading...')
 
 ### createStore
 
-独自のStoreを作成。
+Create a custom Store.
 
 ```typescript
 import { createStore } from 'jotai'
@@ -288,9 +288,9 @@ import { createStore } from 'jotai'
 const store = createStore()
 
 // Methods
-store.get(countAtom)                    // 値を取得
-store.set(countAtom, 5)                 // 値を設定
-store.sub(countAtom, () => {            // 購読
+store.get(countAtom)                    // Get value
+store.set(countAtom, 5)                 // Set value
+store.sub(countAtom, () => {            // Subscribe
   console.log('changed:', store.get(countAtom))
 })
 ```
@@ -299,7 +299,7 @@ store.sub(countAtom, () => {            // 購読
 
 ### getDefaultStore
 
-デフォルトのStoreを取得（Provider外で使用時）。
+Get the default Store (when used outside Provider).
 
 ```typescript
 import { getDefaultStore } from 'jotai'
@@ -312,17 +312,17 @@ store.set(countAtom, 10)
 
 ## Provider
 
-React Context経由でStoreを提供。
+Provide Store via React Context.
 
 ```typescript
 import { Provider } from 'jotai'
 
-// 基本使用
+// Basic usage
 <Provider>
   <App />
 </Provider>
 
-// カスタムStore使用
+// Using custom Store
 const myStore = createStore()
 <Provider store={myStore}>
   <App />
@@ -333,7 +333,7 @@ const myStore = createStore()
 
 ### useStore
 
-現在のStoreを取得。
+Get the current Store.
 
 ```typescript
 import { useStore } from 'jotai'
@@ -346,7 +346,7 @@ store.set(countAtom, 5)
 
 ### useHydrateAtoms
 
-atomに初期値を注入（SSR/テスト用）。
+Inject initial values into atoms (for SSR/testing).
 
 ```typescript
 import { useHydrateAtoms } from 'jotai/utils'
