@@ -1,0 +1,11 @@
+{
+  "name": "jotai-expert",
+  "version": "1.0.0",
+  "description": "Expert skill for Jotai state management library - atom-based state management for React applications",
+  "author": {
+    "name": "s-hiraoku",
+    "url": "https://github.com/s-hiraoku"
+  },
+  "repository": "https://github.com/s-hiraoku/claude-code-harnesses-factory",
+  "license": "MIT"
+}
