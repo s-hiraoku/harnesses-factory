@@ -15,8 +15,8 @@ Execute the Claude Code upgrade process in dry-run mode.
 First, check if pre-generated summary exists (prepared-upgrade.json), otherwise fall back to pending-upgrade.json:
 
 ```bash
-cat "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/prepared-upgrade.json" 2>/dev/null || \
-cat "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json" 2>/dev/null || \
+cat "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/prepared-upgrade.json" 2>/dev/null || \
+cat "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json" 2>/dev/null || \
 echo "{}"
 ```
 
@@ -37,7 +37,7 @@ Use AskUserQuestion tool to confirm:
 ### 3. Detect Installation Method
 
 ```bash
-node "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/scripts/detect-install-method.js"
+node "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/scripts/detect-install-method.js"
 ```
 
 ### 4. Execute Upgrade (DRY-RUN)
@@ -64,9 +64,9 @@ Do NOT run any actual upgrade commands.
 Simply copy the prepared data to changelog-summary.json:
 
 ```bash
-cp "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/prepared-upgrade.json" "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json"
-rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json"
-rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/prepared-upgrade.json"
+cp "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/prepared-upgrade.json" "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json"
+rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json"
+rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/prepared-upgrade.json"
 ```
 
 Skip to Step 8.
@@ -76,7 +76,7 @@ Skip to Step 8.
 #### Step 5.1: Read the Skill
 
 ```bash
-cat "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/skills/changelog-interpreter/SKILL.md"
+cat "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/skills/changelog-interpreter/SKILL.md"
 ```
 
 #### Step 5.2: Gather Information (REQUIRED)
@@ -116,9 +116,9 @@ jq -n \
     latestVersion: $latest,
     summary: $summary,
     generatedAt: (now | todate)
-  }' > "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json"
+  }' > "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json"
 
-rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json"
+rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json"
 ```
 
 ### 7. Generate Infographic (Only if not pre-generated)
@@ -128,19 +128,19 @@ rm -f "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.clau
 If you need to generate manually:
 
 ```bash
-python3 "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/scripts/generate-infographic.py" \
-  "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json" \
+python3 "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/scripts/generate-infographic.py" \
+  "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/pending-upgrade.json" \
   "{lang}" \
-  "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/infographics/changelog-{prevVersion}-to-{newVersion}.png"
+  "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/infographics/changelog-{prevVersion}-to-{newVersion}.png"
 ```
 
 Update the summary JSON with infographic path:
 
 ```bash
-jq --arg path "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/infographics/changelog-{prevVersion}-to-{newVersion}.png" \
+jq --arg path "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/infographics/changelog-{prevVersion}-to-{newVersion}.png" \
    '.infographicPath = $path' \
-   "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json" > tmp.json && \
-   mv tmp.json "/Volumes/SSD/ghq/github.com/s-hiraoku/claude-code-harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json"
+   "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json" > tmp.json && \
+   mv tmp.json "/Volumes/SSD/ghq/github.com/s-hiraoku/harnesses-factory/.claude/cc-version-updater-test/.cache/changelog-summary.json"
 ```
 
 ### 8. Prompt Restart

@@ -6,10 +6,10 @@ Jotai状態管理ライブラリのエキスパートスキルを提供するプ
 
 ```bash
 # Claude Code plugin として追加
-/plugin install https://github.com/s-hiraoku/claude-code-harnesses-factory/plugins/jotai-expert
+/plugin install https://github.com/s-hiraoku/harnesses-factory/plugins/jotai-expert
 
 # または skills CLI で追加
-npx skills add s-hiraoku/claude-code-harnesses-factory/plugins/jotai-expert
+npx skills add s-hiraoku/harnesses-factory/plugins/jotai-expert
 ```
 
 ## Skills

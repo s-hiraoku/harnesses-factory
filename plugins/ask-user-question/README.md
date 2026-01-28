@@ -12,7 +12,7 @@ Structured question-asking skill for gathering user input during task execution.
 ## Installation
 
 ```bash
-/plugin install ask-user-question@s-hiraoku/claude-code-harnesses-factory
+/plugin install ask-user-question@s-hiraoku/harnesses-factory
 ```
 
 ## Usage

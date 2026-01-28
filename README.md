@@ -17,7 +17,7 @@ A marketplace for Claude Code plugins.
 
 ```bash
 # Add marketplace
-/plugin marketplace add s-hiraoku/claude-code-harnesses-factory
+/plugin marketplace add s-hiraoku/harnesses-factory
 
 # Check available plugins
 /plugin search
@@ -29,13 +29,13 @@ A marketplace for Claude Code plugins.
 ### Install Individual Plugin
 
 ```bash
-/plugin install cc-version-updater@s-hiraoku/claude-code-harnesses-factory
+/plugin install cc-version-updater@s-hiraoku/harnesses-factory
 ```
 
 ## Project Structure
 
 ```
-claude-code-harnesses-factory/
+harnesses-factory/
 ├── .claude-plugin/
 │   └── marketplace.json      # Marketplace configuration
 ├── .claude/                   # Development tools (repo-local)

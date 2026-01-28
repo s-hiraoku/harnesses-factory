@@ -5,7 +5,7 @@ Interactive specification builder through detailed interviews.
 ## Installation
 
 ```bash
-claude plugins:add s-hiraoku/claude-code-harnesses-factory --path plugins/spec-interviewer
+claude plugins:add s-hiraoku/harnesses-factory --path plugins/spec-interviewer
 ```
 
 ## Commands

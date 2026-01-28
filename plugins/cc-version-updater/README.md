@@ -14,10 +14,10 @@ A plugin that automatically notifies you when a new version of Claude Code is re
 
 ```bash
 # Global install
-claude plugins install cc-version-updater@s-hiraoku/claude-code-harnesses-factory
+claude plugins install cc-version-updater@s-hiraoku/harnesses-factory
 
 # Project local
-claude plugins install cc-version-updater@s-hiraoku/claude-code-harnesses-factory --scope project
+claude plugins install cc-version-updater@s-hiraoku/harnesses-factory --scope project
 ```
 
 ## Usage

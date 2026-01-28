@@ -1,5 +1,5 @@
 {
-  "name": "claude-code-harnesses-factory",
+  "name": "harnesses-factory",
   "version": "1.0.0",
   "description": "A comprehensive collection of Claude Code harness components for enhanced AI-powered development workflows",
   "keywords": [
@@ -18,12 +18,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s-hiraoku/claude-code-harnesses-factory.git"
+    "url": "git+https://github.com/s-hiraoku/harnesses-factory.git"
   },
   "bugs": {
-    "url": "https://github.com/s-hiraoku/claude-code-harnesses-factory/issues"
+    "url": "https://github.com/s-hiraoku/harnesses-factory/issues"
   },
-  "homepage": "https://github.com/s-hiraoku/claude-code-harnesses-factory#readme",
+  "homepage": "https://github.com/s-hiraoku/harnesses-factory#readme",
   "files": [
     ".claude/",
     ".mcp.json",
